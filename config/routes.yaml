@@ -1,0 +1,114 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+home_page:
+  path: /{_locale}
+  controller: App\Controller\DefaultController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+  defaults:
+    _locale: fr
+
+boutique:
+  path: /{_locale}/boutique
+  controller: App\Controller\BoutiqueController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+
+rayon:
+  path: /{_locale}/rayon/{idCategorie}
+  controller: App\Controller\BoutiqueController::rayon
+  requirements:
+    _locale: '%app.supported_locales%'
+
+search:
+  path: /{_locale}/search
+  controller: App\Controller\BoutiqueController::search
+  requirements:
+    _locale: '%app.supported_locales%'
+
+contact:
+  path: /{_locale}/contact
+  controller: App\Controller\ContactController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+
+panier_index:
+  path: /{_locale}/panier
+  controller: App\Controller\PanierController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+
+panier_ajouter:
+  path: /{_locale}/panier/ajouter/{idProduit}/{quantite}
+  controller: App\Controller\PanierController::ajouter
+  requirements:
+      _locale: '%app.supported_locales%'
+
+panier_supprimer:
+    path: /{_locale}/panier/supprimer/{idProduit}
+    controller: App\Controller\PanierController::supprimer
+    requirements:
+      _locale: '%app.supported_locales%'
+
+panier_enlever:
+  path: /{_locale}/panier/supprimer/{idProduit}/{quantite}
+  controller: App\Controller\PanierController::enlever
+  requirements:
+    _locale: '%app.supported_locales%'
+
+panier_vider:
+  path: /{_locale}/panier/supprimer/{idProduit}/{quantite}
+  controller: App\Controller\PanierController::vider
+  requirements:
+    _locale: '%app.supported_locales%'
+
+panier_validation:
+    path: /{_locale}/panier/validation
+    controller: App\Controller\PanierController::validation
+    requirements:
+      _locale: '%app.supported_locales%'
+
+commande_index:
+  path: /{_locale}/commandes
+  controller: App\Controller\CommandeController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+
+usager_accueil:
+  path: /{_locale}/usager_accueil
+  controller: App\Controller\UsagerController::index
+  requirements:
+    _locale: '%app.supported_locales%'
+
+usager_inscription:
+  path: /{_locale}/usager_inscription
+  controller: App\Controller\UsagerController::new
+  requirements:
+    _locale: '%app.supported_locales%'
+
+app_login:
+  path: /{_locale}/connexion
+  controller: App\Controller\SecurityController::login
+  requirements:
+    _locale: '%app.supported_locales%'
+
+backOffice:
+  path: /{_locale}/admin/backOffice
+  controller: App\Controller\SecurityController::login
+  requirements:
+    _locale: '%app.supported_locales%'
+
+captcha_routing:
+  resource: "@CaptchaBundle/Resources/config/routing.yml"
+
+devise-change:
+  path: /{_locale}/currency/change/{to}
+  controller: App\Controller\DeviseController:change
+  defaults:
+    to: EUR
+
+
+
+
