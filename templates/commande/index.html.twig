@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block content %}
+
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th colspan="3"> Mes commandes </th>
+        </tr>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Date</th>
+            <th scope="col">Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+
+    {% for ligneCommande in commandes  %}
+        <tr>
+            <td> {{ligneCommande.getId()}} </td>
+            <td> {{ligneCommande.getDateCommande().format('d-m-Y à H:i:s')}} </td>
+            <td> {{ligneCommande.getStatut()}} </td>
+        </tr>
+    {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

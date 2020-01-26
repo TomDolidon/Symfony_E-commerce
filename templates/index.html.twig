@@ -1,0 +1,26 @@
+
+
+{% block title %}Grolidon{% endblock %}
+
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+ {% if app.user %}
+  <h2>Bonjour {{ app.user.nom }} ! </h2>
+ {% endif %}
+
+
+ <h1 style=" text-align: center; margin: 30px 0"> Bienvenue sur GROLIDON ! </h1>
+
+ <a href="{{ path('boutique') }}">
+    <img src="{{ asset('images/epicerie.jpg') }}" style="width: 80%; margin: 0 10%; cursor: pointer;" >
+ </a>
+
+
+{% endblock %}
+{% block script %}{% endblock %}
+
+
+
+

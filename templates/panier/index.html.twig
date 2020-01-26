@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block content %}
+
+
+    {% if panier|length == 0  %}
+        <div> Votre panier est vide pour le moment </div>
+
+    {% else %}
+
+    <table class="table table-striped">
+        <thead>
+        <th colspan="6"> Mon panier </th>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for lignePanier in panier  %}
+
+            <tr>
+
+                <td>
+                    {{lignePanier['produit'].getLibelle()}}
+                </td>
+                <td>
+                    {{lignePanier['produit'].getTexte()}}
+                </td>
+
+                <td>
+                    <form class="form-inline" action="{{ path('panier_enlever', {'idProduit' :lignePanier['produit'].getId() , 'quantite' : 1 } )  }}" method="GET">
+                        <input type="submit" value="-">
+                    </form>
+                    {{lignePanier['quantite']}}
+                    <form class="form-inline" action="{{ path('panier_ajouter', {'idProduit' : lignePanier['produit'].getId() , 'quantite' : 1 } )  }}" method="GET">
+                        <input type="submit" value="+">
+                    </form>
+                </td>
+
+                <td>
+                    {{lignePanier['produit'].getPrix()|currency_convert|format_currency(devise)}}
+                </td>
+
+                <td>
+                    {{ (lignePanier['quantite'] * lignePanier['produit'].getPrix())|currency_convert|format_currency(devise) }}
+                </td>
+
+                <td>
+                    <form class="form-inline" action="{{ path('panier_supprimer', {'idProduit' : lignePanier['produit'].getId() } )  }}" method="GET">
+                        <input type="submit" value="Supprimer">
+                    </form>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> {{ total |currency_convert|format_currency(devise) }} </td>
+            <td>
+                <form class="form-inline" action="{{ path('panier_validation' )  }}" method="GET">
+                    <input type="submit" value="Commander">
+                </form>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    {% endif %}
+
+
+
+
+{% endblock %}

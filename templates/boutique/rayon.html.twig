@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Produits {% endblock %}
+
+{% block content %}
+
+    <div>
+
+        {% for produit in produits %}
+
+                <div class="card" style="width: 18rem; display: inline-block !important;" >
+                    <form action="{{ path('panier_ajouter', {'idProduit' : produit.id, 'quantite' : 1 } )  }}" method="GET">
+
+                    <img class="card-img-top" src="{{ asset(produit.visuel) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.libelle }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">  {{ produit.prix|currency_convert|format_currency(devise)}} </h6>
+                        <p class="card-text">{{ produit.texte }}</p>
+                        <input type="submit" class="btn btn-primary" value="Ajouter au panier">
+                    </div>
+                    </form>
+
+                </div>
+
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

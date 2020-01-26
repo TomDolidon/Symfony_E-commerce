@@ -1,0 +1,17 @@
+{% block sidebar %}
+
+    <div>
+
+    Top des ventes
+
+    {% for topSell in topSells %}
+        |
+        <img  src="{{ asset(topSell.visuel) }}" style="width: 40px;">
+        {{ topSell.libelle }} :
+        {{ topSell.quantite_totale }} produits vendus
+    {% endfor %}
+
+    </div>
+
+
+{% endblock %}
